@@ -18,8 +18,13 @@ wdev.init({
 });
 
 run.script('checkup').then(function() {
-    var gulp = run.gulp('copy-html');
-    Promise.all([gulp]).then(function() {
+    var tasks = [];
+    tasks.push(run.gulp('copy-html'));
+    tasks.push(run.gulp('copy-css'));
+    tasks.push(run.gulp('copy-js'));
+    
+    Promise.all(tasks).then(function() {
+        run.gulp('watch');
         run.service('http-server');
     });
 });

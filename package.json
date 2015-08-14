@@ -12,10 +12,12 @@
   "author": "Marco Pegoraro",
   "license": "MIT",
   "dependencies": {
+    "del": "^1.2.1",
     "express": "^4.13.3",
     "extend": "^3.0.0",
     "fs-extra": "^0.23.1",
     "gulp": "^3.9.0",
+    "gulp-watch": "^4.3.4",
     "md5": "^2.0.0"
   }
 }
