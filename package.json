@@ -1,0 +1,21 @@
+{
+  "name": "wdev",
+  "version": "0.0.1",
+  "description": "Frontend Development Environment",
+  "preferGlobal": true,
+  "bin": {
+    "wdev": "bin/wdev.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Marco Pegoraro",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.13.3",
+    "extend": "^3.0.0",
+    "fs-extra": "^0.23.1",
+    "gulp": "^3.9.0",
+    "md5": "^2.0.0"
+  }
+}
