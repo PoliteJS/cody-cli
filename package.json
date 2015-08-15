@@ -1,6 +1,6 @@
 {
   "name": "wdev",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Frontend Development Environment",
   "preferGlobal": true,
   "bin": {
@@ -17,6 +17,8 @@
     "extend": "^3.0.0",
     "fs-extra": "^0.23.1",
     "gulp": "^3.9.0",
+    "gulp-csslint": "^0.1.5",
+    "gulp-jsxcs": "^0.1.9",
     "gulp-watch": "^4.3.4",
     "md5": "^2.0.0"
   }
