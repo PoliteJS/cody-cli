@@ -6,14 +6,14 @@ var gulpWatch = require('gulp-watch');
 var gulpJsxcs = require('gulp-jsxcs');
 var gulpCsslint = require('gulp-csslint');
 
+var jscsConfig = require('./config/jscs.config');
+
 gulp.task('lint-js', function() {
     return gulp.src([
         path.join(process.env.WDEV_SRC, '**/*.js'),
         '!' + path.join(process.env.WDEV_SRC, '**/*.min.js')
     ])
-        .pipe(gulpJsxcs({
-            preset: 'airbnb'
-        }));
+        .pipe(gulpJsxcs(jscsConfig));
 });
 
 gulp.task('lint-css', function() {
