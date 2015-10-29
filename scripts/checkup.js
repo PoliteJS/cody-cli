@@ -1,6 +1,6 @@
 
-var wdev = require('../lib/wdev');
+var cody = require('../lib/cody');
 var fs = require('fs-extra');
 
-wdev.log('checkup...');
+cody.log('checkup...');
 fs.ensureDirSync(process.env.WDEV_DEST);

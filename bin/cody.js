@@ -2,7 +2,7 @@
 
 var path = require('path');
 var md5 = require('md5');
-var wdev = require('../lib/wdev');
+var cody = require('../lib/cody');
 var run = require('../lib/run');
 
 var projectHash = md5(process.cwd());
@@ -10,7 +10,7 @@ var projectSrc = process.cwd();
 var projectDest = path.join(__dirname, '..', 'projects', projectHash);
 var projectBuild = path.join(projectDest, 'build');
 
-wdev.init({
+cody.init({
     WDEV_HASH: projectHash,
     WDEV_SRC: projectSrc,
     WDEV_DEST: projectDest,

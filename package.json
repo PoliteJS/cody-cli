@@ -1,10 +1,10 @@
 {
-  "name": "wdev",
-  "version": "0.0.4",
+  "name": "cody-cli",
+  "version": "0.0.1",
   "description": "Frontend Development Environment",
   "preferGlobal": true,
   "bin": {
-    "wdev": "bin/wdev.js"
+    "cody": "bin/cody.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
