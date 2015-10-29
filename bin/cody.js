@@ -11,10 +11,11 @@ var projectDest = path.join(__dirname, '..', 'projects', projectHash);
 var projectBuild = path.join(projectDest, 'build');
 
 cody.init({
-    WDEV_HASH: projectHash,
-    WDEV_SRC: projectSrc,
-    WDEV_DEST: projectDest,
-    WDEV_BUILD: projectBuild
+    CODY_HASH: projectHash,
+    CODY_SRC: projectSrc,
+    CODY_DEST: projectDest,
+    CODY_BUILD: projectBuild,
+    CODY_PORT: 3000
 });
 
 run.script('checkup').then(function() {
