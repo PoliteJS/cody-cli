@@ -53,4 +53,8 @@ change in your project's folder will be reflected in the server.
 
 	foo.less -> foo.less.css
 	foo.scss -> foo.scss.css
+	
+All your transpiled code supports **sourcemaps_ out of the box!**
+
+
 

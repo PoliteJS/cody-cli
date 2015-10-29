@@ -1,6 +1,6 @@
 {
   "name": "cody-cli",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Frontend web development server for modern web apps",
   "main": "./bin/cody.js",
   "bin": {
@@ -17,6 +17,7 @@
     "gulp-less": "^3.0.3",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.1.0",
+    "gulp-sourcemaps": "^1.6.0",
     "gulp-watch": "^4.3.4",
     "md5": "^2.0.0"
   },

@@ -8,6 +8,7 @@ var gulpCsslint = require('gulp-csslint');
 var gulpLess = require('gulp-less');
 var gulpSass = require('gulp-sass');
 var gulpRename = require('gulp-rename');
+var gulpSourcemaps = require('gulp-sourcemaps');
 
 var jscsConfig = require('./config/jscs.config');
 
@@ -72,12 +73,14 @@ gulp.task('copy-js', ['clear-js'], function() {
 
 gulp.task('transpile-less', ['clear-less'], function() {
     return gulp.src(path.join(process.env.CODY_SRC, '*.less'))
+        .pipe(gulpSourcemaps.init())
         .pipe(gulpLess({
             paths: [
                 path.join(process.env.CODY_SRC, 'bower_components'),
                 path.join(process.env.CODY_SRC, 'node_modules')
             ]
         }))
+        .pipe(gulpSourcemaps.write())
         .pipe(gulpRename(function(path) {
             path.extname = '.less.css'
         }))
@@ -86,7 +89,9 @@ gulp.task('transpile-less', ['clear-less'], function() {
 
 gulp.task('transpile-scss', ['clear-scss'], function() {
     return gulp.src(path.join(process.env.CODY_SRC, '*.scss'))
+        .pipe(gulpSourcemaps.init())
         .pipe(gulpSass())
+        .pipe(gulpSourcemaps.write())
         .pipe(gulpRename(function(path) {
             path.extname = '.scss.css'
         }))
