@@ -1,7 +1,7 @@
-Cody Cli
+Cody CLI
 ---
 
-`Cody Cli` is a command line utility designed to help web development at the beginning 
+`Cody` is a command line utility designed to help web development at the beginning 
 of the developer's career.
 
 [![Stories in Ready](https://badge.waffle.io/PoliteJS/cody-cli.svg?label=ready&title=Ready)](http://waffle.io/PoliteJS/cody-cli)
@@ -30,7 +30,7 @@ I think those guys need a tool that allows in focusing on **getting an _Hello Wo
 
 ## Install & Run
 
-`Cody Cli` comes as a globally available command line tool:
+`Cody` comes as a globally available command line tool:
 
     npm install -g cody-cli
     
@@ -47,3 +47,9 @@ Once it is installed you can easily bootstrap a new web project:
 You project will be available at `http://localhost:3000` immediately, and every 
 change in your project's folder will be reflected in the server.
    
+## Less
+
+`Cody` is able to understand `less`:
+
+	foo.less -> foo.less.css
+

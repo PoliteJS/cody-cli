@@ -24,6 +24,7 @@ run.script('checkup').then(function() {
     tasks.push(run.gulp('copy-html'));
     tasks.push(run.gulp('copy-css'));
     tasks.push(run.gulp('copy-js'));
+    tasks.push(run.gulp('transpile-less'));
     
     Promise.all(tasks).then(function() {
         run.gulp('lint-js');
