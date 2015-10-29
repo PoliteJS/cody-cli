@@ -1,25 +1,46 @@
 {
   "name": "cody-cli",
   "version": "0.0.1",
-  "description": "Frontend Development Environment",
-  "preferGlobal": true,
+  "description": "Frontend web development server for modern web apps",
+  "main": "./bin/cody.js",
   "bin": {
-    "cody": "bin/cody.js"
+    "cody-cli": "cody.js"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Marco Pegoraro",
-  "license": "MIT",
   "dependencies": {
     "del": "^1.2.1",
-    "express": "^4.13.3",
     "extend": "^3.0.0",
     "fs-extra": "^0.23.1",
     "gulp": "^3.9.0",
     "gulp-csslint": "^0.1.5",
     "gulp-jsxcs": "^0.1.9",
     "gulp-watch": "^4.3.4",
-    "md5": "^2.0.0"
-  }
+    "md5": "^2.0.0",
+    "express": "^4.13.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PoliteJS/cody-cli.git"
+  },
+  "keywords": [
+    "modern",
+    "web",
+    "app",
+    "server",
+    "es6",
+    "es7",
+    "import",
+    "webpack",
+    "less",
+    "sass"
+  ],
+  "author": "Marco Pegoraro",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PoliteJS/cody-cli/issues"
+  },
+  "homepage": "https://github.com/PoliteJS/cody-cli#readme"
 }

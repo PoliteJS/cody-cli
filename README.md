@@ -1,11 +1,11 @@
-WDev
+Cody Cli
 ---
 
-`WDev` is a command line utility designed to help web development at the beginning 
+`Cody Cli` is a command line utility designed to help web development at the beginning 
 of the developer's career.
 
-[![Stories in Ready](https://badge.waffle.io/PoliteJS/wdev.svg?label=ready&title=Ready)](http://waffle.io/PoliteJS/wdev)
-[![Backlog](https://badge.waffle.io/PoliteJS/wdev.svg?label=in%20progress&title=In Progress)](http://waffle.io/PoliteJS/wdev)
+[![Stories in Ready](https://badge.waffle.io/PoliteJS/cody-cli.svg?label=ready&title=Ready)](http://waffle.io/PoliteJS/cody-cli)
+[![Backlog](https://badge.waffle.io/PoliteJS/cody-cli.svg?label=in%20progress&title=In Progress)](http://waffle.io/PoliteJS/cody-cli)
 
 ## Why?
 
@@ -30,9 +30,9 @@ I think those guys need a tool that allows in focusing on **getting an _Hello Wo
 
 ## Install & Run
 
-`WDev` comes as a globally available command line tool:
+`Cody Cli` comes as a globally available command line tool:
 
-    npm install -g wdev
+    npm install -g cody-cli
     
     
 Once it is installed you can easily bootstrap a new web project:
@@ -42,8 +42,8 @@ Once it is installed you can easily bootstrap a new web project:
     cd my-web-project
     
     // this run the magic!
-    wdev 
+    cody 
    
-You project will be available at `http://localhost:8080` immediately, and every 
+You project will be available at `http://localhost:3000` immediately, and every 
 change in your project's folder will be reflected in the server.
    
