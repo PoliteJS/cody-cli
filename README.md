@@ -49,7 +49,8 @@ change in your project's folder will be reflected in the server.
    
 ## Less
 
-`Cody` is able to understand `less`:
+`Cody` is able to understand `less` and `sass`:
 
 	foo.less -> foo.less.css
+	foo.scss -> foo.scss.css
 
