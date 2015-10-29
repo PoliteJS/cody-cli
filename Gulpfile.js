@@ -6,6 +6,7 @@ var gulpWatch = require('gulp-watch');
 var gulpJsxcs = require('gulp-jsxcs');
 var gulpCsslint = require('gulp-csslint');
 var gulpLess = require('gulp-less');
+var gulpSass = require('gulp-sass');
 var gulpRename = require('gulp-rename');
 
 var jscsConfig = require('./config/jscs.config');
@@ -38,6 +39,12 @@ gulp.task('clear-css', function(done) {
 
 gulp.task('clear-less', function(done) {
     del([path.join(process.env.CODY_BUILD, '**/*.less.css')], {
+        force: true
+    }, done)
+});
+
+gulp.task('clear-scss', function(done) {
+    del([path.join(process.env.CODY_BUILD, '**/*.scss.css')], {
         force: true
     }, done)
 });
@@ -77,6 +84,15 @@ gulp.task('transpile-less', ['clear-less'], function() {
         .pipe(gulp.dest(process.env.CODY_BUILD));
 });
 
+gulp.task('transpile-scss', ['clear-scss'], function() {
+    return gulp.src(path.join(process.env.CODY_SRC, '*.scss'))
+        .pipe(gulpSass())
+        .pipe(gulpRename(function(path) {
+            path.extname = '.scss.css'
+        }))
+        .pipe(gulp.dest(process.env.CODY_BUILD));
+});
+
 gulp.task('watch', function() {
     gulpWatch(path.join(process.env.CODY_SRC, '**/*.html'), function() {
         gulp.start('copy-html');
@@ -92,5 +108,8 @@ gulp.task('watch', function() {
     });
     gulpWatch(path.join(process.env.CODY_SRC, '**/*.less'), function() {
         gulp.start('transpile-less');
+    });
+    gulpWatch(path.join(process.env.CODY_SRC, '**/*.scss'), function() {
+        gulp.start('transpile-scss');
     });
 });
