@@ -22,8 +22,8 @@ I think those guys need a tool that allows in focusing on **getting an _Hello Wo
 - run your html through a proper HTTP server
 - get code hints for Javascript, CSS, Less*, Sass*
 - transparent transpilers:
-  - write CSS, Less* or Sass* 
-  - write ES6* or even ES7*
+  - write CSS, Less or Sass
+  - write ES6 or even ES7*
   - use ES6 modules* to include Javascript into Javascript
   
 (*) to be done
@@ -47,7 +47,7 @@ Once it is installed you can easily bootstrap a new web project:
 You project will be available at `http://localhost:3000` immediately, and every 
 change in your project's folder will be reflected in the server.
    
-## Less
+## Less & Sass
 
 `Cody` is able to understand `less` and `sass`:
 
@@ -55,6 +55,11 @@ change in your project's folder will be reflected in the server.
 	foo.scss -> foo.scss.css
 	
 All your transpiled code supports **sourcemaps_ out of the box!**
+
+## ES2015
+
+Use the `.jsx` extension to access all the `es2015` and `react` presets for Babel
+
 
 
 
