@@ -64,7 +64,11 @@ Use the `.jsx` extension to access all the `es2015` and `react` presets for _Bab
 
 `.less`, `.sass` and `.jsx` files are transpiled automatically every time you save them. You just need to refresh your browser window.
 
+## Assets
 
+All the files inside the folders listed below are made available to the running server without any transformation:
 
-
+- assets/
+- images/
+- fonts/
 

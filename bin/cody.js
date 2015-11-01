@@ -27,8 +27,9 @@ run.script('checkup').then(function() {
     var tasks1 = [];
 
     // dev only
-    // run.gulp('copy-html');return;
+    // run.gulp('copy-assets');return;
 
+    tasks.push(run.gulp('copy-assets'));
     tasks.push(run.gulp('copy-html'));
     tasks.push(run.gulp('copy-css'));
     tasks.push(run.gulp('copy-js'));
