@@ -14,9 +14,9 @@ var gulpSourcemaps = require('gulp-sourcemaps');
 var jscsConfig = require('./config/jscs.config');
 
 var ASSETS_GLOBS = [
-    'assets/**/*.*',
-    'images/**/*.*',
-    'fonts/**/*.*'
+    '**/assets/**/*.*',
+    '**/images/**/*.*',
+    '**/fonts/**/*.*'
 ];
 
 var ASSETS_SOURCES = ASSETS_GLOBS.map(function(glob) {
@@ -27,8 +27,8 @@ var ASSETS_TARGETS = ASSETS_GLOBS.map(function(glob) {
     return path.join(process.env.CODY_BUILD, glob)
 });
 
-console.log(ASSETS_SOURCES);
-console.log(ASSETS_TARGETS);
+// console.log(ASSETS_SOURCES);
+// console.log(ASSETS_TARGETS);
 
 gulp.task('lint-js', function() {
     return gulp.src([
@@ -152,6 +152,9 @@ gulp.task('transpile-js', ['clear-jsx'], function() {
 });
 
 gulp.task('watch', function() {
+    gulpWatch(ASSETS_SOURCES, function() {
+        gulp.start('copy-assets');
+    });
     gulpWatch(path.join(process.env.CODY_SRC, '**/*.html'), function() {
         gulp.start('copy-html');
     });
