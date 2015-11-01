@@ -54,6 +54,12 @@ change in your project's folder will be reflected in the server.
 	
 > All your transpiled code supports **_sourcemaps_ out of the box!**
 
+When you use CSS frameworks (or utilities packages) from `NPM` or `Bower` you can import those modules by name omitting the package directory:
+
+	// Sass
+	@import "bootstrap/scss/bootstrap"
+
+
 ## ES2015
 
 Use the `.jsx` extension to access all the `es2015` and `react` presets for _Babel_.
