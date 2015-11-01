@@ -15,13 +15,14 @@ cody.init({
     CODY_SRC: projectSrc,
     CODY_DEST: projectDest,
     CODY_BUILD: projectBuild,
-    CODY_PORT: 3000
+    CODY_PORT: 8080
 });
 
 run.script('checkup').then(function() {
-    var tasks = [];
+    var tasks = []; 
 
-    // run.gulp('copy-js');return;
+    // dev only
+    // run.gulp('transpile-js');return;
 
     tasks.push(run.gulp('copy-html'));
     tasks.push(run.gulp('copy-css'));
@@ -38,4 +39,3 @@ run.script('checkup').then(function() {
         run.service('http-server');
     });
 });
-

@@ -2,35 +2,33 @@ Cody CLI
 ---
 
 `Cody` is a command line utility designed to help web development at the beginning 
-of the developer's career.
+of the developer's career. `Cody` takes care of the environment and **let you focus on the code**.
 
 [![Stories in Ready](https://badge.waffle.io/PoliteJS/cody-cli.svg?label=ready&title=Ready)](http://waffle.io/PoliteJS/cody-cli)
 [![Backlog](https://badge.waffle.io/PoliteJS/cody-cli.svg?label=in%20progress&title=In Progress)](http://waffle.io/PoliteJS/cody-cli)
 
 ## Why?
 
-I've spent almost one year of my life **teaching the basics of web development to people who were completely strangers** to this mighty and vaste universe.
+> Setting up a simple server (_NIGIX_, _Apache_) it's a difficult business, setting > up _Grunt_ / _Gulp_ to transpile _LESS_ or _SASS_ is even more difficult
+> (especially if you don't know _Javascript_). Put the pieces together with tools 
+> like _Webpack_ or _Browserify_ it is **simply impossible to the beginner**.
 
-I discovered there are tons of concepts that needs to be learned, among those the environment which runs the code.
-
-Setting up a simple server (NIGIX, Apache) it's a difficult business, setting up Grunt / Gulp to transpile LESS is even more difficult, especially if you don't know Javascript!
-
-I think those guys need a tool that allows in focusing on **getting an _Hello World_ done**, not getting the exercise being executed!
+I think those guys need a tool that allows them focus on **getting an _Hello World_ done**, not getting the exercise being executed on their machine!
 
 ## Features
 
-- run your html through a proper HTTP server
-- get code hints for Javascript, CSS, Less*, Sass*
+- run your html through a local HTTP server
 - transparent transpilers:
   - write CSS, Less or Sass
   - write ES6 or even ES7*
   - use ES6 modules* to include Javascript into Javascript
+- get code hints for Javascript, CSS, Less*, Sass*
   
 (*) to be done
 
 ## Install & Run
 
-`Cody` comes as a globally available command line tool:
+`Cody` comes as a globally available command line tool which you install with `NodeJS`:
 
     npm install -g cody-cli
     
@@ -44,7 +42,7 @@ Once it is installed you can easily bootstrap a new web project:
     // this run the magic!
     cody 
    
-You project will be available at `http://localhost:3000` immediately, and every 
+You project will be available at `http://localhost:8080` immediately, and every 
 change in your project's folder will be reflected in the server.
    
 ## Less & Sass
@@ -54,11 +52,18 @@ change in your project's folder will be reflected in the server.
 	foo.less -> foo.less.css
 	foo.scss -> foo.scss.css
 	
-All your transpiled code supports **sourcemaps_ out of the box!**
+> All your transpiled code supports **_sourcemaps_ out of the box!**
 
 ## ES2015
 
-Use the `.jsx` extension to access all the `es2015` and `react` presets for Babel
+Use the `.jsx` extension to access all the `es2015` and `react` presets for _Babel_.
+
+> All your transpiled code supports **_sourcemaps_ out of the box!**
+
+## Live Updates
+
+`.less`, `.sass` and `.jsx` files are transpiled automatically every time you save them. You just need to refresh your browser window.
+
 
 
 

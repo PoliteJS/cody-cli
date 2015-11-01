@@ -7,7 +7,6 @@ var gulpJsxcs = require('gulp-jsxcs');
 var gulpCsslint = require('gulp-csslint');
 var gulpLess = require('gulp-less');
 var gulpSass = require('gulp-sass');
-var gulp6to5 = require('gulp-6to5');
 var gulpBabel = require('gulp-babel');
 var gulpRename = require('gulp-rename');
 var gulpSourcemaps = require('gulp-sourcemaps');
@@ -58,7 +57,7 @@ gulp.task('clear-js', function(done) {
     }, done)
 });
 
-gulp.task('clear-js15', function(done) {
+gulp.task('clear-jsx', function(done) {
     del([path.join(process.env.CODY_BUILD, '**/*.jsx')], {
         force: true
     }, done)
@@ -110,7 +109,7 @@ gulp.task('transpile-scss', ['clear-scss'], function() {
         .pipe(gulp.dest(process.env.CODY_BUILD));
 });
 
-gulp.task('transpile-js', ['clear-js15'], function() {
+gulp.task('transpile-js', ['clear-jsx'], function() {
     return gulp.src([
         path.join(process.env.CODY_SRC, '**/*.jsx'),
         '!' + path.join(process.env.CODY_SRC, '**/_*.jsx')
