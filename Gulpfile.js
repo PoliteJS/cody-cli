@@ -25,110 +25,81 @@ var ASSETS_GLOBS = [
     '**/node_modules/**/*.*'
 ];
 
+var IGNORE_SOURCES = ASSETS_GLOBS.map(function(glob) {
+    return '!' + path.join(process.env.CODY_SRC, glob);
+});
+
 var ASSETS_SOURCES = ASSETS_GLOBS.map(function(glob) {
     return path.join(process.env.CODY_SRC, glob)
 });
 
-
-
 var HTML_SOURCES = [
-    path.join(process.env.CODY_SRC, '**/*.html'),
-    '!' + path.join(process.env.CODY_SRC, 'assets/**/*'),
-    '!' + path.join(process.env.CODY_SRC, 'bower_components/**/*'),
-    '!' + path.join(process.env.CODY_SRC, 'node_modules/**/*')
-];
+    path.join(process.env.CODY_SRC, '**/*.html')
+].concat(IGNORE_SOURCES);
 
 var CSS_SOURCES = [
-    path.join(process.env.CODY_SRC, '**/*.css'),
-    '!' + path.join(process.env.CODY_SRC, 'assets/**/*'),
-    '!' + path.join(process.env.CODY_SRC, 'bower_components/**/*'),
-    '!' + path.join(process.env.CODY_SRC, 'node_modules/**/*')
-];
+    path.join(process.env.CODY_SRC, '**/*.css')
+].concat(IGNORE_SOURCES);
 
 var JS_SOURCES = [
-    path.join(process.env.CODY_SRC, '**/*.js'),
-    '!' + path.join(process.env.CODY_SRC, 'assets/**/*'),
-    '!' + path.join(process.env.CODY_SRC, 'bower_components/**/*'),
-    '!' + path.join(process.env.CODY_SRC, 'node_modules/**/*')
-];
+    path.join(process.env.CODY_SRC, '**/*.js')
+].concat(IGNORE_SOURCES);
 
 var LESS_SOURCES = [
-    path.join(process.env.CODY_SRC, '*.less'),
-    '!' + path.join(process.env.CODY_SRC, 'assets/**/*'),
-    '!' + path.join(process.env.CODY_SRC, 'bower_components/**/*'),
-    '!' + path.join(process.env.CODY_SRC, 'node_modules/**/*')
-];
+    path.join(process.env.CODY_SRC, '*.less')
+].concat(IGNORE_SOURCES);
 
 var SCSS_SOURCES = [
-    path.join(process.env.CODY_SRC, '*.scss'),
-    '!' + path.join(process.env.CODY_SRC, 'assets/**/*'),
-    '!' + path.join(process.env.CODY_SRC, 'bower_components/**/*'),
-    '!' + path.join(process.env.CODY_SRC, 'node_modules/**/*')
-];
+    path.join(process.env.CODY_SRC, '*.scss')
+].concat(IGNORE_SOURCES);
 
 var JSX_SOURCES = [
-    path.join(process.env.CODY_SRC, '**/*.jsx'),
-    '!' + path.join(process.env.CODY_SRC, 'assets/**/*'),
-    '!' + path.join(process.env.CODY_SRC, 'bower_components/**/*'),
-    '!' + path.join(process.env.CODY_SRC, 'node_modules/**/*')
-];
+    path.join(process.env.CODY_SRC, '**/*.jsx')
+].concat(IGNORE_SOURCES);
 
 var LINT_JS_SOURCES = [
     path.join(process.env.CODY_SRC, '**/*.js'),
-    '!' + path.join(process.env.CODY_SRC, '**/*.min.js'),
-    '!' + path.join(process.env.CODY_SRC, 'assets/**/*'),
-    '!' + path.join(process.env.CODY_SRC, 'bower_components/**/*'),
-    '!' + path.join(process.env.CODY_SRC, 'node_modules/**/*')
-];
+    '!' + path.join(process.env.CODY_SRC, '**/*.min.js')
+].concat(IGNORE_SOURCES);
 
 var LINT_CSS_SOURCES = [
     path.join(process.env.CODY_SRC, '**/*.css'),
-    path.join(process.env.CODY_SRC, '**/*.min.css'),
-    '!' + path.join(process.env.CODY_SRC, 'assets/**/*'),
-    '!' + path.join(process.env.CODY_SRC, 'bower_components/**/*'),
-    '!' + path.join(process.env.CODY_SRC, 'node_modules/**/*')
-];
+    path.join(process.env.CODY_SRC, '**/*.min.css')
+].concat(IGNORE_SOURCES);
 
 
 
 
 
+var IGNORE_TARGETS = ASSETS_GLOBS.map(function(glob) {
+    return '!' + path.join(process.env.CODY_BUILD, glob);
+});
 
 var ASSETS_TARGETS = ASSETS_GLOBS.map(function(glob) {
     return path.join(process.env.CODY_BUILD, glob)
 });
 
 var HTML_TARGETS = [
-    path.join(process.env.CODY_BUILD, '**/*.html'),
-    '!' + path.join(process.env.CODY_BUILD, 'bower_components/**/*'),
-    '!' + path.join(process.env.CODY_BUILD, 'bower_components/**/*')
-];
+    path.join(process.env.CODY_BUILD, '**/*.html')
+].concat(IGNORE_TARGETS);
 
 var CSS_TARGETS = [
     path.join(process.env.CODY_BUILD, '**/*.css'),
     '!' + path.join(process.env.CODY_BUILD, '**/*.less.css'),
-    '!' + path.join(process.env.CODY_BUILD, '**/*.scss.css'),
-    '!' + path.join(process.env.CODY_BUILD, 'bower_components/**/*'),
-    '!' + path.join(process.env.CODY_BUILD, 'bower_components/**/*')
-];
+    '!' + path.join(process.env.CODY_BUILD, '**/*.scss.css')
+].concat(IGNORE_TARGETS);
 
 var JS_TARGETS = [
-    path.join(process.env.CODY_BUILD, '**/*.js'),
-    '!' + path.join(process.env.CODY_BUILD, 'bower_components/**/*'),
-    '!' + path.join(process.env.CODY_BUILD, 'bower_components/**/*')
-];
+    path.join(process.env.CODY_BUILD, '**/*.js')
+].concat(IGNORE_TARGETS);
 
 var LESS_TARGETS = [
-    path.join(process.env.CODY_BUILD, '**/*.less.css'),
-    '!' + path.join(process.env.CODY_BUILD, 'bower_components/**/*'),
-    '!' + path.join(process.env.CODY_BUILD, 'bower_components/**/*')
-];
+    path.join(process.env.CODY_BUILD, '**/*.less.css')
+].concat(IGNORE_TARGETS);
 
 var SCSS_TARGETS = [
-    path.join(process.env.CODY_BUILD, '**/*.scss.css'),
-    '!' + path.join(process.env.CODY_BUILD, 'bower_components/**/*'),
-    '!' + path.join(process.env.CODY_BUILD, 'bower_components/**/*')
-];
+    path.join(process.env.CODY_BUILD, '**/*.scss.css')
+].concat(IGNORE_TARGETS);
 
 
 
