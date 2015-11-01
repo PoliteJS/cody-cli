@@ -249,10 +249,23 @@ gulp.task('transpile-js', ['clear-jsx'], function() {
 
 
 
+// ---[[   T A S K S   ]]--- //
 
+gulp.task('lint', [
+    'lint-js',
+    'lint-css'
+]);
 
-
-
+gulp.task('build', [
+    'lint',
+    'copy-assets',
+    'copy-html',
+    'copy-js',
+    'copy-css',
+    'transpile-scss',
+    'transpile-less',
+    'transpile-js'
+]);
 
 gulp.task('watch', function() {
     gulpWatch(ASSETS_SOURCES, function() {

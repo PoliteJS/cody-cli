@@ -15,6 +15,8 @@ var projectSrc = process.cwd();
 var projectDest = path.join(getUserHome(), '.cody-cli', 'projects', projectHash);
 var projectBuild = path.join(projectDest, 'build');
 
+var services = [];
+
 cody.init({
     CODY_HASH: projectHash,
     CODY_SRC: projectSrc,
@@ -24,42 +26,34 @@ cody.init({
 });
 
 checkPort(8080, function(portIsAvailable) {
-    if (portIsAvailable) {
-        runCody();
-    } else {
+    if (!portIsAvailable) {
         console.log(' ');
-        console.log(' ');
-        console.log('# Cody:');
+        console.log('# Cody Error:');
         console.log('Port', cody.env('CODY_PORT'), 'is not available');
         console.log(' ');
-        console.log(' ');
+        return;
     }
-});
 
-
-function runCody() {
+    // start Cody!
     run.script('checkup').then(function() {
-        var tasks = [];
-        var tasks1 = [];
 
         // dev only
         // run.gulp('copy-assets');return;
 
-        tasks.push(run.gulp('copy-assets'));
-        tasks.push(run.gulp('copy-html'));
-        tasks.push(run.gulp('copy-css'));
-        tasks.push(run.gulp('copy-js'));
-
-        tasks.push(run.gulp('transpile-less'));
-        tasks.push(run.gulp('transpile-scss'));
-        tasks.push(run.gulp('transpile-js'));
-        
-        Promise.all(tasks).then(function() {
-            run.gulp('lint-js');
-            run.gulp('lint-css');
-            run.gulp('watch');
-            
-            run.service('http-server');
+        // run services
+        run.gulp('build').then(function() {
+            services.push(run.service('gulp-watch'));
+            services.push(run.service('http-server'));
         });
     });
-}
+});
+
+/** 
+ * gracefully shutdown
+ */
+process.on('SIGINT', function() {
+    console.log(' ');
+    services.forEach(function(service) { service.kill() });
+    setTimeout(function() { process.exit() });
+});
+
