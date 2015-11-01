@@ -223,12 +223,7 @@ gulp.task('transpile-less', ['clear-less'], function() {
 gulp.task('transpile-scss', ['clear-scss'], function() {
     return gulp.src(SCSS_SOURCES)
         .pipe(gulpSourcemaps.init())
-        .pipe(gulpSass({
-            includePaths: [
-                path.join(process.env.CODY_SRC, 'bower_components'),
-                path.join(process.env.CODY_SRC, 'node_modules')
-            ]
-        }))
+        .pipe(gulpSass())
         .pipe(gulpSourcemaps.write())
         .pipe(gulpRename(function(path) {
             path.extname = '.scss.css'
