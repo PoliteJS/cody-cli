@@ -13,36 +13,146 @@ var gulpSourcemaps = require('gulp-sourcemaps');
 
 var jscsConfig = require('./config/jscs.config');
 
+
+
+
+
 var ASSETS_GLOBS = [
     '**/assets/**/*.*',
     '**/images/**/*.*',
-    '**/fonts/**/*.*'
+    '**/fonts/**/*.*',
+    '**/bower_components/**/*.*',
+    '**/node_modules/**/*.*'
 ];
 
 var ASSETS_SOURCES = ASSETS_GLOBS.map(function(glob) {
     return path.join(process.env.CODY_SRC, glob)
 });
 
+
+
+var HTML_SOURCES = [
+    path.join(process.env.CODY_SRC, '**/*.html'),
+    '!' + path.join(process.env.CODY_SRC, 'assets/**/*'),
+    '!' + path.join(process.env.CODY_SRC, 'bower_components/**/*'),
+    '!' + path.join(process.env.CODY_SRC, 'node_modules/**/*')
+];
+
+var CSS_SOURCES = [
+    path.join(process.env.CODY_SRC, '**/*.css'),
+    '!' + path.join(process.env.CODY_SRC, 'assets/**/*'),
+    '!' + path.join(process.env.CODY_SRC, 'bower_components/**/*'),
+    '!' + path.join(process.env.CODY_SRC, 'node_modules/**/*')
+];
+
+var JS_SOURCES = [
+    path.join(process.env.CODY_SRC, '**/*.js'),
+    '!' + path.join(process.env.CODY_SRC, 'assets/**/*'),
+    '!' + path.join(process.env.CODY_SRC, 'bower_components/**/*'),
+    '!' + path.join(process.env.CODY_SRC, 'node_modules/**/*')
+];
+
+var LESS_SOURCES = [
+    path.join(process.env.CODY_SRC, '*.less'),
+    '!' + path.join(process.env.CODY_SRC, 'assets/**/*'),
+    '!' + path.join(process.env.CODY_SRC, 'bower_components/**/*'),
+    '!' + path.join(process.env.CODY_SRC, 'node_modules/**/*')
+];
+
+var SCSS_SOURCES = [
+    path.join(process.env.CODY_SRC, '*.scss'),
+    '!' + path.join(process.env.CODY_SRC, 'assets/**/*'),
+    '!' + path.join(process.env.CODY_SRC, 'bower_components/**/*'),
+    '!' + path.join(process.env.CODY_SRC, 'node_modules/**/*')
+];
+
+var JSX_SOURCES = [
+    path.join(process.env.CODY_SRC, '**/*.jsx'),
+    '!' + path.join(process.env.CODY_SRC, 'assets/**/*'),
+    '!' + path.join(process.env.CODY_SRC, 'bower_components/**/*'),
+    '!' + path.join(process.env.CODY_SRC, 'node_modules/**/*')
+];
+
+var LINT_JS_SOURCES = [
+    path.join(process.env.CODY_SRC, '**/*.js'),
+    '!' + path.join(process.env.CODY_SRC, '**/*.min.js'),
+    '!' + path.join(process.env.CODY_SRC, 'assets/**/*'),
+    '!' + path.join(process.env.CODY_SRC, 'bower_components/**/*'),
+    '!' + path.join(process.env.CODY_SRC, 'node_modules/**/*')
+];
+
+var LINT_CSS_SOURCES = [
+    path.join(process.env.CODY_SRC, '**/*.css'),
+    path.join(process.env.CODY_SRC, '**/*.min.css'),
+    '!' + path.join(process.env.CODY_SRC, 'assets/**/*'),
+    '!' + path.join(process.env.CODY_SRC, 'bower_components/**/*'),
+    '!' + path.join(process.env.CODY_SRC, 'node_modules/**/*')
+];
+
+
+
+
+
+
 var ASSETS_TARGETS = ASSETS_GLOBS.map(function(glob) {
     return path.join(process.env.CODY_BUILD, glob)
 });
 
-// console.log(ASSETS_SOURCES);
-// console.log(ASSETS_TARGETS);
+var HTML_TARGETS = [
+    path.join(process.env.CODY_BUILD, '**/*.html'),
+    '!' + path.join(process.env.CODY_BUILD, 'bower_components/**/*'),
+    '!' + path.join(process.env.CODY_BUILD, 'bower_components/**/*')
+];
+
+var CSS_TARGETS = [
+    path.join(process.env.CODY_BUILD, '**/*.css'),
+    '!' + path.join(process.env.CODY_BUILD, '**/*.less.css'),
+    '!' + path.join(process.env.CODY_BUILD, '**/*.scss.css'),
+    '!' + path.join(process.env.CODY_BUILD, 'bower_components/**/*'),
+    '!' + path.join(process.env.CODY_BUILD, 'bower_components/**/*')
+];
+
+var JS_TARGETS = [
+    path.join(process.env.CODY_BUILD, '**/*.js'),
+    '!' + path.join(process.env.CODY_BUILD, 'bower_components/**/*'),
+    '!' + path.join(process.env.CODY_BUILD, 'bower_components/**/*')
+];
+
+var LESS_TARGETS = [
+    path.join(process.env.CODY_BUILD, '**/*.less.css'),
+    '!' + path.join(process.env.CODY_BUILD, 'bower_components/**/*'),
+    '!' + path.join(process.env.CODY_BUILD, 'bower_components/**/*')
+];
+
+var SCSS_TARGETS = [
+    path.join(process.env.CODY_BUILD, '**/*.scss.css'),
+    '!' + path.join(process.env.CODY_BUILD, 'bower_components/**/*'),
+    '!' + path.join(process.env.CODY_BUILD, 'bower_components/**/*')
+];
+
+
+
+
+
+// ---[[   L I N T   ]]--- //
 
 gulp.task('lint-js', function() {
-    return gulp.src([
-        path.join(process.env.CODY_SRC, '**/*.js'),
-        '!' + path.join(process.env.CODY_SRC, '**/*.min.js')
-    ])
+    return gulp.src(LINT_JS_SOURCES)
         .pipe(gulpJsxcs(jscsConfig));
 });
 
 gulp.task('lint-css', function() {
-    return gulp.src(path.join(process.env.CODY_SRC, '**/*.css'))
+    return gulp.src(LINT_CSS_SOURCES)
         .pipe(gulpCsslint())
         .pipe(gulpCsslint.reporter());
 });
+
+
+
+
+
+
+// ---[[   C L E A R   ]]--- //
 
 gulp.task('clear-assets', function(done) {
     del(ASSETS_TARGETS, {
@@ -51,67 +161,80 @@ gulp.task('clear-assets', function(done) {
 });
 
 gulp.task('clear-html', function(done) {
-    del([path.join(process.env.CODY_BUILD, '**/*.html')], {
+    del(HTML_TARGETS, {
         force: true
     }, done)
 });
 
 gulp.task('clear-css', function(done) {
-    del([path.join(process.env.CODY_BUILD, '**/*.css')], {
+    del(CSS_TARGETS, {
         force: true
     }, done)
 });
 
 gulp.task('clear-less', function(done) {
-    del([path.join(process.env.CODY_BUILD, '**/*.less.css')], {
+    del(LESS_TARGETS, {
         force: true
     }, done)
 });
 
 gulp.task('clear-scss', function(done) {
-    del([path.join(process.env.CODY_BUILD, '**/*.scss.css')], {
+    del(SCSS_TARGETS, {
         force: true
     }, done)
 });
 
 gulp.task('clear-js', function(done) {
-    del([path.join(process.env.CODY_BUILD, '**/*.js')], {
+    del(JS_TARGETS, {
         force: true
     }, done)
 });
 
 gulp.task('clear-jsx', function(done) {
-    del([path.join(process.env.CODY_BUILD, '**/*.jsx')], {
+    del([
+        path.join(process.env.CODY_BUILD, '**/*.jsx'),
+        '!' + path.join(process.env.CODY_BUILD, 'bower_components/**/*')
+    ], {
         force: true
     }, done)
 });
 
-gulp.task('copy-html', ['clear-html'], function() {
-    return gulp.src(path.join(process.env.CODY_SRC, '**/*.html'))
-        .pipe(gulp.dest(process.env.CODY_BUILD));
-});
 
-gulp.task('copy-css', ['clear-css'], function() {
-    return gulp.src(path.join(process.env.CODY_SRC, '**/*.css'))
-        .pipe(gulp.dest(process.env.CODY_BUILD));
-});
 
-gulp.task('copy-js', ['clear-js'], function() {
-    return gulp.src([
-        path.join(process.env.CODY_SRC, '**/*.js'),
-        '!' + path.join(process.env.CODY_SRC, '**/*.es15.js'),
-        '!' + path.join(process.env.CODY_SRC, '**/_*.js')
-    ])
-        .pipe(gulp.dest(process.env.CODY_BUILD));
-});
+
+
+
+
+// ---[[   C O P Y   ]]--- //
 
 gulp.task('copy-assets', ['clear-assets'], function() {
     return gulp.src(ASSETS_SOURCES)
         .pipe(gulp.dest(process.env.CODY_BUILD));
 });
 
+gulp.task('copy-html', ['clear-html'], function() {
+    return gulp.src(HTML_SOURCES)
+        .pipe(gulp.dest(process.env.CODY_BUILD));
+});
+
+gulp.task('copy-css', ['clear-css'], function() {
+    return gulp.src(CSS_SOURCES)
+        .pipe(gulp.dest(process.env.CODY_BUILD));
+});
+
+gulp.task('copy-js', ['clear-js'], function() {
+    return gulp.src(JS_SOURCES)
+        .pipe(gulp.dest(process.env.CODY_BUILD));
+});
+
+
+
+
+
+// ---[[   T R A N S P I L E   ]]--- //
+
 gulp.task('transpile-less', ['clear-less'], function() {
-    return gulp.src(path.join(process.env.CODY_SRC, '*.less'))
+    return gulp.src(LESS_SOURCES)
         .pipe(gulpSourcemaps.init())
         .pipe(gulpLess({
             paths: [
@@ -127,7 +250,7 @@ gulp.task('transpile-less', ['clear-less'], function() {
 });
 
 gulp.task('transpile-scss', ['clear-scss'], function() {
-    return gulp.src(path.join(process.env.CODY_SRC, '*.scss'))
+    return gulp.src(SCSS_SOURCES)
         .pipe(gulpSourcemaps.init())
         .pipe(gulpSass())
         .pipe(gulpSourcemaps.write())
@@ -138,10 +261,7 @@ gulp.task('transpile-scss', ['clear-scss'], function() {
 });
 
 gulp.task('transpile-js', ['clear-jsx'], function() {
-    return gulp.src([
-        path.join(process.env.CODY_SRC, '**/*.jsx'),
-        '!' + path.join(process.env.CODY_SRC, '**/_*.jsx')
-    ])
+    return gulp.src(JSX_SOURCES)
         .pipe(gulpSourcemaps.init())
         .pipe(gulpBabel({
             sourceRoot: process.env.CODY_SRC,
@@ -151,34 +271,35 @@ gulp.task('transpile-js', ['clear-jsx'], function() {
         .pipe(gulp.dest(process.env.CODY_BUILD));
 });
 
+
+
+
+
+
+
+
 gulp.task('watch', function() {
     gulpWatch(ASSETS_SOURCES, function() {
         gulp.start('copy-assets');
     });
-    gulpWatch(path.join(process.env.CODY_SRC, '**/*.html'), function() {
+    gulpWatch(HTML_SOURCES, function() {
         gulp.start('copy-html');
     });
-    gulpWatch(path.join(process.env.CODY_SRC, '**/*.css'), function() {
-        console.log('relint');
+    gulpWatch(CSS_SOURCES, function() {
         gulp.start('copy-css');
         gulp.start('lint-css');
     });
-    gulpWatch([
-        path.join(process.env.CODY_SRC, '**/*.js'),
-    ], function() {
+    gulpWatch(JS_SOURCES, function() {
         gulp.start('copy-js');
         gulp.start('lint-js');
     });
-    gulpWatch(path.join(process.env.CODY_SRC, '**/*.less'), function() {
+    gulpWatch(LESS_SOURCES, function() {
         gulp.start('transpile-less');
     });
-    gulpWatch(path.join(process.env.CODY_SRC, '**/*.scss'), function() {
+    gulpWatch(SCSS_SOURCES, function() {
         gulp.start('transpile-scss');
     });
-    gulpWatch([
-        path.join(process.env.CODY_SRC, '**/*.jsx'),
-        '!' + path.join(process.env.CODY_SRC, '**/_*.jsx')
-    ], function() {
+    gulpWatch(JSX_SOURCES, function() {
         gulp.start('transpile-js');
     });
 });
