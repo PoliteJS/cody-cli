@@ -1,6 +1,6 @@
 {
   "name": "cody-cli",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Frontend web development server for modern web apps",
   "main": "./bin/cody.js",
   "bin": {
